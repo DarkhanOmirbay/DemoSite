@@ -1,0 +1,56 @@
+groups:
+- name: jvm.rules
+  rules:
+  - alert: HighOldGenMemoryUsage
+    expr: vector(1) > 0
+    for: 1s
+    labels:
+      severity: warning
+    annotations:
+      summary: "High old generation memory usage"
+      description: "Old generation memory usage is high for more than 5 minutes."
+
+  - alert: HighHeapMemoryUsage
+    expr: vector(1) > 0
+    for: 1s
+    labels:
+      severity: critical
+    annotations:
+      summary: "High heap memory usage after GC"
+      description: "Heap memory usage after GC is high for more than 5 minutes."
+
+  - alert: LowDiskSpace
+    expr: vector(1) > 0
+    for: 1s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Low disk space"
+      description: "Disk space is less than 10 GB for more than 10 minutes."
+
+  - alert: HighCPUUsage
+    expr: vector(1) > 0
+    for: 1s
+    labels:
+      severity: critical
+    annotations:
+      summary: "High CPU usage"
+      description: "Process CPU usage is high for more than 5 minutes."
+
+  - alert: HighGCPauseTime
+    expr: vector(1) > 0
+    for: 1s
+    labels:
+      severity: warning
+    annotations:
+      summary: "High GC pause time"
+      description: "GC pause time is high for more than 5 minutes."
+
+  - alert: HighThreadCount
+    expr: vector(1) > 0
+    for: 1s
+    labels:
+      severity: warning
+    annotations:
+      summary: "High live thread count"
+      description: "Live thread count is high for more than 5 minutes."

@@ -1,0 +1,24 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'domirbai04@gmail.com'
+  smtp_auth_username: 'domirbai04@gmail.com'
+  smtp_auth_password: 'pass'
+  smtp_require_tls: true
+
+route:
+  receiver: 'email-notifications'
+  group_wait: 1s
+  group_interval: 1s
+  repeat_interval: 1h
+
+receivers:
+  - name: 'email-notifications'
+    email_configs:
+      - to: 'domirbai04@gmail.com'
+        send_resolved: true
+        headers:
+          Subject: '[Alertmanager] {{ .CommonLabels.alertname }}'
+
+templates:
+  - '/etc/alertmanager/template/email.tmpl'  # Corrected closing quote
+
